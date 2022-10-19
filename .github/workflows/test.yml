@@ -15,21 +15,44 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
+      id: setup_node_id
       with:
-        node-version: "16.x"
-    - name: Cache playwright binaries
-      uses: actions/cache@v2
-      id: playwright-cache
-      with:
-        path: |
-          ~/.cache/ms-playwright
-        key: cache-playwright-linux-1.19.2
-
-    - name: Install Dependencies
-    - name: Install Playwright
-      if: steps.playwright-cache.outputs.cache-hit != 'true'
+        node-version: 16
+        ache: npm
+    - run: echo '${{ toJSON(steps.setup_node_id.outputs) }}'
+    - if: ${{ steps.setup_node_id.outputs.cache-hit != 'true' }}
       run: npm install
-      run: npx playwright install --with-deps
+      run: npm playwright install --with-deps
+    - run: npm ls --depth=0
     - name: Run Playwright tests
       run: npx playwright test
+    - uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30
+
+
+
+
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16.x"
+      - name: Cache playwright binaries
+        uses: actions/cache@v2
+        id: playwright-cache
+        with:
+          path: |
+            ~/.cache/ms-playwright
+          key: cache-playwright-linux-1.19.2
+
+      - name: Install Dependencies
+        run: npm ci
+      - name: Install Playwright
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npx playwright test
 
