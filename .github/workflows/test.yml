@@ -24,8 +24,7 @@ jobs:
         run: |
           npm install
           npm install -D @playwright/test
-          npx playwright install --with-deps
-      # - run: npm ls --depth=0
+      - run: npm install -D @playwright/test
       - name: Run Playwright tests
         run: npx playwright test
       - uses: actions/upload-artifact@v3
