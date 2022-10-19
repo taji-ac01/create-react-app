@@ -15,21 +15,21 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
-        with:
-          node-version: "16.x"
-      - name: Cache playwright binaries
-        uses: actions/cache@v2
-        id: playwright-cache
-        with:
-          path: |
-            ~/.cache/ms-playwright
-          key: cache-playwright-linux-1.19.2
+      with:
+        node-version: "16.x"
+    - name: Cache playwright binaries
+      uses: actions/cache@v2
+      id: playwright-cache
+      with:
+        path: |
+          ~/.cache/ms-playwright
+        key: cache-playwright-linux-1.19.2
 
-      - name: Install Dependencies
-        run: npm ci
-      - name: Install Playwright
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps
-      - name: Run Playwright tests
-        run: npx playwright test
+    - name: Install Dependencies
+      run: npm ci
+    - name: Install Playwright
+      if: steps.playwright-cache.outputs.cache-hit != 'true'
+      run: npx playwright install --with-deps
+    - name: Run Playwright tests
+      run: npx playwright test
 
