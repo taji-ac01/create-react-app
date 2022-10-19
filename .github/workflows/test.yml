@@ -26,9 +26,9 @@ jobs:
         key: cache-playwright-linux-1.19.2
 
     - name: Install Dependencies
-      run: npm ci
     - name: Install Playwright
       if: steps.playwright-cache.outputs.cache-hit != 'true'
+      run: npm install
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: npx playwright test
