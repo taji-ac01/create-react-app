@@ -16,12 +16,19 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: 16
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: npm-${{ hashFiles('package-lock.json') }}
+        restore-keys: npm-
+
     - name: Install dependencies
-      run: yarn
+      run: npm install
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: yarn playwright test
+      run: npx playwright test
     - uses: actions/upload-artifact@v3
       if: always()
       with:
