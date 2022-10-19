@@ -22,7 +22,7 @@ jobs:
       - run: echo '${{ toJSON(steps.setup_node_id.outputs) }}'
       - if: ${{ steps.setup_node_id.outputs.cache-hit != 'true' }}
         run: npm install
-        run: npm playwright install --with-deps
+        run: npx playwright install --with-deps
       - run: npm ls --depth=0
       - name: Run Playwright tests
         run: npx playwright test
