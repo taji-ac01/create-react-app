@@ -20,10 +20,12 @@ jobs:
           node-version: 16
           cache: yarn
       - run: echo '${{ toJSON(steps.setup_node_id.outputs) }}'
-      - if: ${{ steps.setup_node_id.outputs.cache-hit != 'false' }}
+      - if: ${{ steps.setup_node_id.outputs.cache-hit != 'true' }}
         run: |
           yarn install
-      - run: npx playwright install --with-deps
+      - run: |
+          npx playwright install-deps
+          npx playwright install
       - name: Run Playwright tests
         run: npx playwright test
       - uses: actions/upload-artifact@v3
