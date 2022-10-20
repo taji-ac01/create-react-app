@@ -27,7 +27,7 @@ jobs:
           key: cache-playwright-ubuntu
 
       - name: Install playwright deps
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
         run: yarn add playwright -D -W
       - name: Run Playwright tests
         run: npx playwright test
