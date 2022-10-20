@@ -36,8 +36,8 @@ jobs:
 
       - name: Check POST directories
         run: ls
-      - name: Check NPM
-        run: npm ls --depth=1
+      # - name: Check NPM
+      #   run: npm ls --depth=1
       - name: Run Playwright tests
         run: npx playwright test
       - uses: actions/upload-artifact@v3
