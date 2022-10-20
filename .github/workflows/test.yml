@@ -24,7 +24,11 @@ jobs:
       #   uses: mxschmitt/action-tmate@v3
 
       - name: Install playwright deps
-        run: yarn init -y && yarn add playwright -D -W && yarn playwright install-deps
+        run: |
+          rm yarn.lock
+          yarn init -y
+          yarn add playwright -D -W
+          yarn playwright install-deps
 
       # - name: Cache playwright binaries
       #   uses: actions/cache@v3
