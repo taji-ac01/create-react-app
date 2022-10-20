@@ -35,7 +35,7 @@ jobs:
         run: yarn add playwright -D -W && yarn playwright install-deps
 
       - name: Check POST directories
-        run: ls
+        run: yarn
       # - name: Check NPM
       #   run: npm ls --depth=1
       - name: Run Playwright tests
