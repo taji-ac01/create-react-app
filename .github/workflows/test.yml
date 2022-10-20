@@ -20,7 +20,7 @@ jobs:
           # cache: yarn
           
       - name: Install playwright deps
-        run: yarn add playwright -D -W && yarn playwright install-deps
+        run: npx playwright install-deps
 
       # - name: Cache playwright binaries
       #   uses: actions/cache@v3
