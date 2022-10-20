@@ -40,6 +40,11 @@ jobs:
         run: |
           yarn
 
+      - name: Debug
+        if: ${{ always() }}
+        uses: mxschmitt/action-tmate@v3
+
+
       # - name: Check NPM
       #   run: npm ls --depth=1
       - name: Run Playwright tests
