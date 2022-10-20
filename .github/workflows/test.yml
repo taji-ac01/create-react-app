@@ -18,24 +18,31 @@ jobs:
         with:
           node-version: 16
           cache: yarn
-          
 
-      - name: Cache playwright binaries
-        uses: actions/cache@v3
-        id: playwright-cachev3
-        with:
-          path: |
-            ~/.cache/ms-playwright
-            **/node_modules/playwright
-          key: cache-playwrightv3
-
-      - name: Check Pre directories
+      - name: pre ls
         run: ls
 
-      - name: Install playwright deps
-        if: steps.playwright-cachev3.outputs.cache-hit != 'true'
-        run: yarn add playwright -D -W && yarn playwright install-deps
+      # - name: Cache playwright binaries
+      #   uses: actions/cache@v3
+      #   id: playwright-cachev3
+      #   with:
+      #     path: |
+      #       ~/.cache/ms-playwright
+      #       **/node_modules/playwright
+      #     key: cache-playwrightv3
 
+      # - name: Check Pre directories
+      #   run: ls
+
+      # - name: Install playwright deps
+      #   if: steps.playwright-cachev3.outputs.cache-hit != 'true'
+      #   run: yarn add playwright -D -W && yarn playwright install-deps
+
+      - name: Install playwright deps
+        run: yarn playwright install-deps
+
+      - name: post ls
+        run: ls
 
       - name: Debug
         if: ${{ always() }}
