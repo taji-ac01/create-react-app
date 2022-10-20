@@ -33,13 +33,13 @@ jobs:
         run: ls
 
       - name: Install playwright deps
-        if: steps.playwright-cachev3.outputs.cache-hit != 'ggggg'
+        if: steps.playwright-cachev3.outputs.cache-hit != 'true'
         run: yarn add playwright -D -W && yarn playwright install-deps
 
 
-      # - name: Debug
-      #   if: ${{ always() }}
-      #   uses: mxschmitt/action-tmate@v3
+      - name: Debug
+        if: ${{ always() }}
+        uses: mxschmitt/action-tmate@v3
 
 
       # - name: Check NPM
