@@ -15,18 +15,19 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
-        id: setup_node_id
         with:
           node-version: 16
-          cache: yarn
-          cache-dependency-path: yarn.lock
-      - run: echo '${{ toJSON(steps.setup_node_id.outputs) }}'
-      - if: ${{ steps.setup_node_id.outputs.cache-hit != 'true' }}
-        run: |
-          yarn install
-      - run: |
-          npx playwright install-deps
-          npx playwright install
+      - uses: actions/cache@v2
+        id: playwright-cache
+        with:
+          path: |
+            ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }}
+      - run: npm i
+      - run: npx playwright install --with-deps
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+      - run: npx playwright install-deps
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
       - name: Run Playwright tests
         run: npx playwright test
       - uses: actions/upload-artifact@v3
