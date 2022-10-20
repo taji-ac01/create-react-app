@@ -25,9 +25,9 @@ jobs:
 
       - name: Install playwright deps
         run: |
-          rm yarn.lock
+          rm package.json yarn.lock
           yarn init -y
-          yarn add playwright -D -W
+          yarn add playwright @playwright/test -D -W
           yarn playwright install-deps
 
       # - name: Cache playwright binaries
