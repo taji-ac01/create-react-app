@@ -40,9 +40,9 @@ jobs:
       #   run: |
       #     yarn
 
-      # - name: Debug
-      #   if: ${{ always() }}
-      #   uses: mxschmitt/action-tmate@v3
+      - name: Debug
+        if: ${{ always() }}
+        uses: mxschmitt/action-tmate@v3
 
 
       # - name: Check NPM
