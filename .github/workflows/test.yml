@@ -17,6 +17,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+          cache: yarn
+          
 
       - name: Cache playwright binaries
         uses: actions/cache@v3
@@ -33,12 +35,6 @@ jobs:
       - name: Install playwright deps
         if: steps.playwright-cachev3.outputs.cache-hit != 'true'
         run: yarn add playwright -D -W && yarn playwright install-deps
-
-      - name: Create playwright
-        run: yarn create playwright
-
-      - name: yarn global list
-        run:  yarn global list
 
       - name: Check POST directories
         run: |
