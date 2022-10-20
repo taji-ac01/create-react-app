@@ -34,11 +34,11 @@ jobs:
 
       - name: Install playwright deps
         if: steps.playwright-cache_v3.outputs.cache-hit != 'true'
-        run: yarn playwright install-deps
+        run: yarn add playwright -D -W && yarn playwright install-deps
 
-      - name: Check POST directories
-        run: |
-          yarn
+      # - name: Check POST directories
+      #   run: |
+      #     yarn
 
       # - name: Debug
       #   if: ${{ always() }}
