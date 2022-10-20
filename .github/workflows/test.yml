@@ -31,7 +31,7 @@ jobs:
           key: cache-playwright_v4
 
       - name: Install playwright deps
-        if: steps.playwright-cache_v4.outputs.cache-hit != 'true'
+        # if: steps.playwright-cache_v4.outputs.cache-hit != 'true'
         run: |
           rm package.json yarn.lock
           yarn init -y
