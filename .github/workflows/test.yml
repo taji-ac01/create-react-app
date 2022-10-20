@@ -17,20 +17,26 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+
       - name: Cache playwright binaries
         uses: actions/cache@v3
-        id: playwright-cache1
+        id: playwright-cachev2
         with:
           path: |
             ~/Library/Caches/ms-playwright
             **/node_modules/playwright
-          key: cache-playwright
+          key: cache-playwrightv2
+
+      - name: Check Pre directories
+      - run: ls
 
       - name: Install playwright deps
-        if: steps.playwright-cache1.outputs.cache-hit != 'true'
+        if: steps.playwright-cachev2.outputs.cache-hit != 'true'
         run: |
-          yarn add playwright -D -W
-          ls
+          yarn add playwright -D -W && yarn playwright install-deps
+
+      - name: Check POST directories
+      - run: ls
         
       - name: Run Playwright tests
         run: npx playwright test
