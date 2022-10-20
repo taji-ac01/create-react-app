@@ -19,9 +19,7 @@ jobs:
           node-version: 16
           # cache: yarn
 
-      - name: Debug
-        if: ${{ always() }}
-        uses: mxschmitt/action-tmate@v3
+
 
       - name: Cache playwright binaries
         uses: actions/cache@v3
@@ -39,6 +37,10 @@ jobs:
           yarn init -y
           yarn add playwright @playwright/test -D -W
           yarn playwright install-deps
+
+      - name: Debug
+        if: ${{ always() }}
+        uses: mxschmitt/action-tmate@v3
 
       # - name: Cache playwright binaries
       #   uses: actions/cache@v3
