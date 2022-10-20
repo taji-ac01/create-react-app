@@ -35,7 +35,9 @@ jobs:
         run: yarn add playwright -D -W && yarn playwright install-deps
 
       - name: Check POST directories
-        run: yarn
+        run: |
+          yarn
+          apt-get install -y libEGL.so.1 libopus.so.0 libOpenGL.so.0 libwoff2dec.so.1.0.2 libharfbuzz-icu.so.0 libgstapp-1.0.so.0 libgstpbutils-1.0.so.0 libgstaudio-1.0.so.0 libgsttag-1.0.so.0 libgstvideo-1.0.so.0 libgstgl-1.0.so.0 libgstfft-1.0.so.0 libopenjp2.so.7 libwebpdemux.so.2 libhyphen.so.0 libevdev.so.2 libgstallocators-1.0.so.0 libGLESv2.so.2 libx264.so
       # - name: Check NPM
       #   run: npm ls --depth=1
       - name: Run Playwright tests
