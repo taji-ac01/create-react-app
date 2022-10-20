@@ -18,7 +18,11 @@ jobs:
         with:
           node-version: 16
           # cache: yarn
-          
+
+      - name: Debug
+        if: ${{ always() }}
+        uses: mxschmitt/action-tmate@v3
+
       - name: Install playwright deps
         run: yarn add playwright -D -W && yarn playwright install-deps
 
