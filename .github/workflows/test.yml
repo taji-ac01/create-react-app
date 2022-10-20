@@ -18,25 +18,24 @@ jobs:
         with:
           id: playwright-cachev6
           node-version: 16
-          cache: yarn
 
       - name: pre ls
         run: ls
 
-      # - name: Cache playwright binaries
-      #   uses: actions/cache@v3
-      #   id: playwright-cachev5
-      #   with:
-      #     path: |
-      #       ~/.cache/ms-playwright
-      #       **/node_modules/playwright
-      #     key: cache-playwrightv5
+      - name: Cache playwright binaries
+        uses: actions/cache@v3
+        id: playwright-cachev10
+        with:
+          path: |
+            ~/.cache/ms-playwright
+            **/node_modules/playwright
+          key: cache-playwrightv10
 
       - name: Check Pre directories
         run: ls
 
       - name: Install playwright deps
-        if: steps.playwright-cachev6.outputs.cache-hit != 'true'
+        if: steps.playwright-cachev10.outputs.cache-hit != 'true'
         run: yarn
 
       - name: Install playwright deps
@@ -45,9 +44,9 @@ jobs:
       - name: post ls
         run: ls
 
-      - name: Debug
-        if: ${{ always() }}
-        uses: mxschmitt/action-tmate@v3
+      # - name: Debug
+      #   if: ${{ always() }}
+      #   uses: mxschmitt/action-tmate@v3
 
 
       # - name: Check NPM
