@@ -22,14 +22,13 @@ jobs:
         id: playwright-cache
         with:
           path: |
-            ~/.cache/ms-playwright
-          key: cache-playwright-linux-1.19.2
+            ~/Library/Caches/ms-playwright
+            **/node_modules/playwright
+          key: cache-playwright-ubuntu
 
-      - name: Install Dependencies
-        run: npm i
-      - name: Install Playwright
+      - name: Install playwright deps
         if: steps.playwright-cache.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps
+        run: yarn add playwright -D -W
       - name: Run Playwright tests
         run: npx playwright test
       - uses: actions/upload-artifact@v3
