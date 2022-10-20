@@ -22,24 +22,24 @@ jobs:
       - name: pre ls
         run: ls
 
-      # - name: Cache playwright binaries
-      #   uses: actions/cache@v3
-      #   id: playwright-cachev3
-      #   with:
-      #     path: |
-      #       ~/.cache/ms-playwright
-      #       **/node_modules/playwright
-      #     key: cache-playwrightv3
+      - name: Cache playwright binaries
+        uses: actions/cache@v3
+        id: playwright-cachev5
+        with:
+          path: |
+            ~/.cache/ms-playwright
+            **/node_modules/playwright
+          key: cache-playwrightv5
 
-      # - name: Check Pre directories
-      #   run: ls
+      - name: Check Pre directories
+        run: ls
 
       # - name: Install playwright deps
       #   if: steps.playwright-cachev3.outputs.cache-hit != 'true'
-      #   run: yarn add playwright -D -W && yarn playwright install-deps
+      #   run: yarn
 
       - name: Install playwright deps
-        run: yarn playwright install-deps
+        run: npx playwright install-deps
 
       - name: post ls
         run: ls
