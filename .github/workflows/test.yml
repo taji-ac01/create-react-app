@@ -32,8 +32,7 @@ jobs:
 
       - name: Install playwright deps
         if: steps.playwright-cachev2.outputs.cache-hit != 'true'
-        run: |
-          yarn add playwright -D -W && yarn playwright install-deps
+        run: yarn add playwright -D -W && yarn playwright install-deps
 
       - name: Check POST directories
       - run: ls
