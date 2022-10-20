@@ -19,30 +19,32 @@ jobs:
           node-version: 16
           # cache: yarn
           
-
-      - name: Cache playwright binaries
-        uses: actions/cache@v3
-        id: playwright-cache_v3
-        with:
-          path: |
-            ~/.cache/ms-playwright
-            **/node_modules/playwright
-          key: cache-playwright_v3
-
-      - name: Check Pre directories
-        run: ls
-
       - name: Install playwright deps
-        if: steps.playwright-cache_v3.outputs.cache-hit != 'true'
         run: yarn add playwright -D -W && yarn playwright install-deps
+
+      # - name: Cache playwright binaries
+      #   uses: actions/cache@v3
+      #   id: playwright-cache_v3
+      #   with:
+      #     path: |
+      #       ~/.cache/ms-playwright
+      #       **/node_modules/playwright
+      #     key: cache-playwright_v3
+
+      # - name: Check Pre directories
+      #   run: ls
+
+      # - name: Install playwright deps
+      #   if: steps.playwright-cache_v3.outputs.cache-hit != 'true'
+      #   run: yarn add playwright -D -W && yarn playwright install-deps
 
       # - name: Check POST directories
       #   run: |
       #     yarn
 
-      - name: Debug
-        if: ${{ always() }}
-        uses: mxschmitt/action-tmate@v3
+      # - name: Debug
+      #   if: ${{ always() }}
+      #   uses: mxschmitt/action-tmate@v3
 
 
       # - name: Check NPM
