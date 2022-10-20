@@ -22,25 +22,20 @@ jobs:
 
       - name: Cache playwright binaries
         uses: actions/cache@v3
-        id: playwright-cachev4
+        id: playwright-cachev3
         with:
           path: |
             ~/.cache/ms-playwright
             **/node_modules/playwright
-          key: cache-playwrightv4
+          key: cache-playwrightv3
 
       - name: Check Pre directories
         run: ls
 
       - name: Install playwright deps
-        if: steps.playwright-cachev4.outputs.cache-hit != 'test'
-        run: |
-          yarn playwright install-deps
-          yarn
+        if: steps.playwright-cachev3.outputs.cache-hit != 'ggggg'
+        run: yarn add playwright -D -W && yarn playwright install-deps
 
-      - name: Check POST directories
-        run: |
-          ls
 
       # - name: Debug
       #   if: ${{ always() }}
