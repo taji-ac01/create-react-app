@@ -34,8 +34,8 @@ jobs:
         if: steps.playwright-cachev3.outputs.cache-hit != 'true'
         run: yarn add playwright -D -W && yarn playwright install-deps
 
-      - name: Repository
-        run:  cat $GITHUB_EVENT_PATH
+      - name: yarn global list
+        run:  yarn global list
 
       - name: Check POST directories
         run: |
