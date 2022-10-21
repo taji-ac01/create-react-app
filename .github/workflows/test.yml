@@ -40,7 +40,7 @@ jobs:
         if: steps.playwright-cache_v6.outputs.cache-hit == 'true'
         run: |
 
-          yarn playwright install-deps
+          npx playwright install-deps
 
       # - name: Debug
       #   if: ${{ always() }}
