@@ -1,10 +1,13 @@
 import { test, expect } from '@playwright/test';
+import axios from 'axios';
 
 test('homepage has Playwright in title and get started link linking to the intro page', async ({ page }) => {
   await page.goto('https://playwright.dev/');
 
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle(/Playwright/);
+
+  await axios.get('https://api.zipaddress.net/?zipcode=9071801');
 
   // create a locator
   const getStarted = page.getByText('Get Started');

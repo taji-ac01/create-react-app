@@ -23,20 +23,24 @@ jobs:
 
       - name: Cache playwright binaries
         uses: actions/cache@v3
-        id: playwright-cache_v4
+        id: playwright-cache_v5
         with:
           path: |
             ~/.cache/ms-playwright
             **/node_modules/playwright
-          key: cache-playwright_v4
+          key: cache-playwright_v5
 
       - name: Install playwright deps
-        # if: steps.playwright-cache_v4.outputs.cache-hit != 'true'
-        run: |
-          rm package.json yarn.lock
-          yarn init -y
-          yarn add playwright @playwright/test -D -W
-          yarn playwright install-deps
+        if: steps.playwright-cache_v5.outputs.cache-hit != 'true'
+        run: yarn
+        
+        
+        
+      - run: |
+        rm package.json yarn.lock
+        yarn init -y
+        yarn add playwright @playwright/test -D -W
+        yarn playwright install-deps
 
       - name: Debug
         if: ${{ always() }}
