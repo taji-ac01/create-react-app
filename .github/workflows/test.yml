@@ -35,11 +35,11 @@ jobs:
         run: yarn
     
       - name: install
-         run: |
-        rm package.json yarn.lock
-        yarn init -y
-        yarn add playwright @playwright/test -D -W
-        yarn playwright install-deps
+        run: |
+          rm package.json yarn.lock
+          yarn init -y
+          yarn add playwright @playwright/test -D -W
+          yarn playwright install-deps
 
       - name: Debug
         if: ${{ always() }}
