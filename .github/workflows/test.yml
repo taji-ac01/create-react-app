@@ -41,9 +41,9 @@ jobs:
           yarn add playwright @playwright/test -D -W
           yarn playwright install-deps
 
-      - name: Debug
-        if: ${{ always() }}
-        uses: mxschmitt/action-tmate@v3
+      # - name: Debug
+      #   if: ${{ always() }}
+      #   uses: mxschmitt/action-tmate@v3
 
       # - name: Cache playwright binaries
       #   uses: actions/cache@v3
