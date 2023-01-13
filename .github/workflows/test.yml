@@ -23,7 +23,8 @@ jobs:
         run: yarn
 
       - name: Update apt-get
-        run: sudo apt-get -y update sudo apt-get -y upgrade
+        run: sudo apt-get update 
+        run: sudo apt-get upgrade
 
       - name: Install Playwright Browsers
         run: |
