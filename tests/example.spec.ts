@@ -1,9 +1,18 @@
 import { test, expect } from '@playwright/test';
 import axios from 'axios';
 
-test('homepage has Playwright in title and get started link linking to the intro page', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
 
+
+
+
+
+
+test('homepage has Playwright in title and get started link linking to the intro page', async ({ page }) => {
+
+  const number = await Promise.resolve(1);
+
+  await page.goto('https://playwright.dev/');
+  console.info(number)
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle(/Playwright/);
 
